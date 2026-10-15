@@ -1,66 +1,762 @@
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="utf-8">
-<meta name="robots" content="noindex">
-<title>AeroBMSCE</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroBMSCE | Aeronautical Design & UAV Engineering Club</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            aeroNavy: '#0f172a',
+            aeroSlate: '#1e293b',
+            aeroBlue: '#1d4ed8',
+            aeroOrange: '#ea580c',
+            surfaceMuted: '#f8fafc',
+            surfaceBorder: '#e2e8f0',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .scrolly-img {
+      transition: opacity 0.35s ease-out;
+      will-change: opacity;
+    }
+    .reveal-card {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    }
+    .reveal-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
-<body>
+<body class="bg-surfaceMuted text-slate-800 font-sans antialiased selection:bg-blue-600 selection:text-white">
 
-<div class="notice">Practice website for the AeroBMSCE web development recruitment task. This is not the official AeroBMSCE website.</div>
-
-<div class="top">
-  <div class="wrap">
-    <img src="images/header-logo.png">
-    <div class="nav">
-      <a href="#">Home</a>
-      <a href="#who">Who We Are</a>
-      <a href="journey.html">Journey</a>
-      <a href="partners.html">Partners</a>
-      <a href="contact.html">Contact</a>
+  <!-- Institutional College Bar -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-6 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 font-mono">
+      <span>B.M.S. COLLEGE OF ENGINEERING, BENGALURU &bull; FLIGHT SYSTEMS &amp; R&amp;D</span>
+      <div class="flex items-center gap-4 text-[11px]">
+        <span>ESTD. 2010</span>
+        <span class="text-slate-500">|</span>
+        <span class="text-orange-400 font-semibold">SAE INTERNATIONAL CHAPTER</span>
+      </div>
     </div>
-    <div class="clear"></div>
   </div>
-</div>
 
-<div class="hero">
-  <div class="box">
-    <h1>AeroBMSCE</h1>
-    <p class="tag">&bull; Above Gravity &bull; &nbsp;&nbsp;&nbsp; &bull; Beyond Limits &bull;</p>
-    <p>ONE OF INDIA’S LONGEST-RUNNING COMPETITIVE AEROSPACE &amp; UAV TEAM WITH INTERNATIONAL FLIGHT HISTORY</p>
+  <!-- Primary Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-surfaceBorder shadow-xs">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3">
+        <img src="./images/header-logo.png" alt="AeroBMSCE Logo" class="h-10 w-auto object-contain" onerror="this.onerror=null; this.src='./images/logo.png';">
+        <div class="border-l border-slate-200 pl-3">
+          <span class="text-base font-extrabold text-slate-900 tracking-tight block leading-tight">AEROBMSCE</span>
+          <span class="text-[11px] font-medium text-slate-500">Student Aeromodelling &amp; UAV Lab</span>
+        </div>
+      </a>
+      <nav class="flex items-center space-x-8 text-sm font-semibold text-slate-700">
+        <a href="#home" class="hover:text-blue-700 transition-colors">Home</a>
+        <a href="#who-we-are" class="hover:text-blue-700 transition-colors">Who We Are</a>
+        <a href="#what-we-build" class="hover:text-blue-700 transition-colors">What We Build</a>
+        <a href="#achievements" class="hover:text-blue-700 transition-colors">Achievements</a>
+        <a href="#partners" class="px-5 py-2.5 rounded bg-blue-700 text-white hover:bg-blue-800 transition-colors shadow-xs">Partner With Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- 1. Home / Hero -->
+  <section id="home" class="relative pt-20 pb-24 border-b border-surfaceBorder overflow-hidden bg-white">
+    <div class="absolute inset-0 z-0 pointer-events-none">
+      <img src="./images/bg.jpg" alt="AeroBMSCE Aircraft Field" class="w-full h-full object-cover object-center opacity-15" onerror="this.onerror=null; this.src='./images/photo5.jpg';">
+      <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/70"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-blue-50 border border-blue-200 text-blue-800 text-xs font-semibold mb-6">
+            <span>R&amp;D Subsidized Aerial Systems Laboratory</span>
+          </div>
+          <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 mb-6 leading-tight">
+            Designing, Fabricating &amp; Flying High-Performance UAV Platforms.
+          </h1>
+          <p class="text-slate-600 text-base max-w-xl mb-8 leading-relaxed">
+            The official aeromodelling team of B.M.S. College of Engineering. 16+ years of international competition campaigns, numerical aerodynamics research, and autonomous UAV flight.
+          </p>
+
+          <div class="grid grid-cols-4 gap-4 p-5 rounded-lg bg-white border border-surfaceBorder shadow-xs mb-8">
+            <div>
+              <p class="text-3xl font-extrabold text-slate-900 font-mono">16+</p>
+              <p class="text-[11px] font-semibold text-slate-500 uppercase mt-1">Years Operating</p>
+            </div>
+            <div>
+              <p class="text-3xl font-extrabold text-blue-700 font-mono">75+</p>
+              <p class="text-[11px] font-semibold text-slate-500 uppercase mt-1">Aircraft Projects</p>
+            </div>
+            <div>
+              <p class="text-3xl font-extrabold text-slate-900 font-mono">20+</p>
+              <p class="text-[11px] font-semibold text-slate-500 uppercase mt-1">Podium Finishes</p>
+            </div>
+            <div>
+              <p class="text-3xl font-extrabold text-orange-600 font-mono">50+</p>
+              <p class="text-[11px] font-semibold text-slate-500 uppercase mt-1">Technical Papers</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4 text-sm font-semibold">
+            <a href="#what-we-build" class="px-5 py-3 rounded bg-blue-700 hover:bg-blue-800 text-white transition-colors shadow-xs">
+              Explore Aircraft Fleet &darr;
+            </a>
+            <a href="#who-we-are" class="px-5 py-3 rounded border border-surfaceBorder bg-white text-slate-700 hover:border-slate-400 transition-colors">
+              Explore Subteams
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="bg-white rounded-lg border border-surfaceBorder shadow-sm p-4">
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-surfaceBorder text-xs font-mono text-slate-500">
+              <span class="font-bold text-slate-800">AIRFRAME CAD SPECIFICATION</span>
+              <span>DWG-REV-2026</span>
+            </div>
+            <div class="bg-slate-100 rounded p-6 flex items-center justify-center">
+              <img id="heroPlaneImg" src="./images/cad-plane.png" alt="AeroBMSCE CAD Airframe" class="w-full h-64 object-contain transition-all duration-300">
+            </div>
+            <div class="mt-4 flex items-center justify-between text-xs text-slate-600">
+              <button onclick="toggleHeroView()" class="font-semibold text-blue-700 hover:underline">
+                Toggle CAD / Real Composite View
+              </button>
+              <span class="font-mono text-[11px] bg-slate-100 px-2 py-0.5 rounded text-slate-700">Airfoil: Selig S1223</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. SCROLLYTELLING MODULE 1: Who We Are -->
+  <section id="who-we-are" class="relative border-b border-surfaceBorder bg-white">
+    <div class="max-w-7xl mx-auto px-6 pt-12 pb-4">
+      <span class="text-xs font-bold uppercase tracking-widest text-blue-700 mb-1 block">// 01 DIVISION DIRECTORY</span>
+      <h2 class="text-3xl font-extrabold text-slate-900">Who We Are &mdash; Four Wings</h2>
+    </div>
+
+    <!-- 140vh track for balanced wheel clicks -->
+    <div class="relative min-h-[140vh]" id="wingsScrollContainer">
+      <div class="sticky top-20 h-[calc(100vh-5rem)] w-full overflow-hidden flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full h-[85%] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-5 bg-white border border-surfaceBorder rounded-xl p-6 shadow-md z-20">
+            <div class="flex items-center justify-between font-mono text-xs mb-3 border-b border-surfaceBorder pb-2">
+              <span id="wingProgress" class="text-blue-700 font-bold">DIVISION 01 / 04</span>
+              <span id="wingBadge" class="text-slate-500 font-semibold">INTERNATIONAL FLIGHTLINE</span>
+            </div>
+            
+            <h3 id="wingTitle" class="text-2xl lg:text-3xl font-extrabold text-slate-900 mb-3 tracking-tight">
+              Team Yaksha
+            </h3>
+            
+            <p id="wingDesc" class="text-slate-600 text-xs leading-relaxed mb-6 font-normal">
+              Team Yaksha represents BMSCE internationally at the prestigious SAE Aero Design Series in North America, designing high-performance airframes optimized for maximum takeoff weight within strict size-box constraints.
+            </p>
+
+            <div class="space-y-2 font-mono text-xs border-t border-surfaceBorder pt-3">
+              <div class="flex justify-between text-slate-600">
+                <span>FLAGSHIP ARENA:</span>
+                <span id="wingArena" class="text-slate-900 font-bold">Texas, USA (SAE West)</span>
+              </div>
+              <div class="flex justify-between text-slate-600">
+                <span>SPECIALIZATION:</span>
+                <span id="wingSkills" class="text-blue-700 font-bold">MATLAB Aeroelasticity &amp; CFD</span>
+              </div>
+              <div class="flex justify-between text-slate-600">
+                <span>PODIUM RECORD:</span>
+                <span id="wingRank" class="text-orange-600 font-bold">2nd Globally (MATLAB Award)</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-4 gap-2 mt-5 font-mono text-xs">
+              <button onclick="jumpToWing(0)" id="wpill0" class="py-2 rounded bg-blue-700 text-white font-bold transition-all">01</button>
+              <button onclick="jumpToWing(1)" id="wpill1" class="py-2 rounded bg-surfaceMuted border border-surfaceBorder text-slate-600 hover:border-slate-400 transition-all">02</button>
+              <button onclick="jumpToWing(2)" id="wpill2" class="py-2 rounded bg-surfaceMuted border border-surfaceBorder text-slate-600 hover:border-slate-400 transition-all">03</button>
+              <button onclick="jumpToWing(3)" id="wpill3" class="py-2 rounded bg-surfaceMuted border border-surfaceBorder text-slate-600 hover:border-slate-400 transition-all">04</button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 h-full w-full relative rounded-xl overflow-hidden border border-surfaceBorder bg-slate-100 shadow-md">
+            <img id="wBg0" src="./images/photo1.jpg" alt="Team Yaksha" class="scrolly-img absolute inset-0 w-full h-full object-cover opacity-100">
+            <img id="wBg1" src="./images/photo2.jpg" alt="Blue Impulse" class="scrolly-img absolute inset-0 w-full h-full object-cover opacity-0">
+            <img id="wBg2" src="./images/photo3.jpg" alt="Flying Phantoms" class="scrolly-img absolute inset-0 w-full h-full object-cover opacity-0">
+            <img id="wBg3" src="./images/photo4.jpg" alt="Team Vectors" class="scrolly-img absolute inset-0 w-full h-full object-cover opacity-0">
+            <div class="absolute bottom-3 right-4 px-3 py-1 rounded bg-slate-900/80 backdrop-blur-sm text-xs font-mono text-white border border-slate-700">
+              <span id="wingCaption">Team Yaksha Build Session</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SCROLLYTELLING MODULE 2: What We Build -->
+  <section id="what-we-build" class="relative border-b border-surfaceBorder bg-surfaceMuted">
+    <div class="max-w-7xl mx-auto px-6 pt-12 pb-4">
+      <span class="text-xs font-bold uppercase tracking-widest text-blue-700 mb-1 block">// 02 AIRCRAFT FLEET</span>
+      <h2 class="text-3xl font-extrabold text-slate-900">What We Build &mdash; Fleet Telemetry</h2>
+    </div>
+
+    <!-- 120vh track for balanced 3-item wheel clicks -->
+    <div class="relative min-h-[120vh]" id="fleetScrollContainer">
+      <div class="sticky top-20 h-[calc(100vh-5rem)] w-full overflow-hidden flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full h-[85%] grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-5 bg-white border border-surfaceBorder rounded-xl p-6 shadow-md z-20">
+            <div class="flex items-center justify-between font-mono text-xs mb-3 border-b border-surfaceBorder pb-2">
+              <span id="fleetProgress" class="text-blue-700 font-bold">AIRFRAME 01 / 03</span>
+              <span id="fleetCategory" class="text-slate-500 font-semibold">SAE INTERNATIONAL CLASS</span>
+            </div>
+            
+            <h3 id="fleetName" class="text-2xl lg:text-3xl font-extrabold text-slate-900 mb-3 tracking-tight">
+              Micro Class Aeromodel
+            </h3>
+            
+            <p id="fleetDesc" class="text-slate-600 text-xs leading-relaxed mb-5 font-normal">
+              Engineered strictly within modular transport envelope constraints. Focuses on minimal empty weight, high structural rigidity using carbon fiber pultruded rods, and sub-2-minute rapid pit assembly.
+            </p>
+
+            <div class="border border-surfaceBorder rounded text-xs overflow-hidden mb-5">
+              <div class="grid grid-cols-3 p-2 bg-surfaceMuted border-b border-surfaceBorder">
+                <span class="font-semibold text-slate-600">Propulsion</span>
+                <span id="specMotor" class="col-span-2 font-mono text-slate-900 font-medium">T-Motor Brushless + APC Prop</span>
+              </div>
+              <div class="grid grid-cols-3 p-2 bg-white border-b border-surfaceBorder">
+                <span class="font-semibold text-slate-600">Payload Ratio</span>
+                <span id="specPayload" class="col-span-2 font-mono text-slate-900 font-bold text-blue-700">~1.8x Empty Weight Fraction</span>
+              </div>
+              <div class="grid grid-cols-3 p-2 bg-surfaceMuted border-b border-surfaceBorder">
+                <span class="font-semibold text-slate-600">Materials</span>
+                <span id="specMaterial" class="col-span-2 font-mono text-slate-900">Hand-Selected Balsa &amp; 3K Carbon</span>
+              </div>
+              <div class="grid grid-cols-3 p-2 bg-white">
+                <span class="font-semibold text-slate-600">Assembly</span>
+                <span id="specAssembly" class="col-span-2 font-mono text-emerald-700 font-bold">&lt; 120s Rapid Assembly</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 font-mono text-xs">
+              <button onclick="jumpToFleet(0)" id="fpill0" class="py-2 rounded bg-blue-700 text-white font-bold transition-all">01. MICRO</button>
+              <button onclick="jumpToFleet(1)" id="fpill1" class="py-2 rounded bg-surfaceMuted border border-surfaceBorder text-slate-600 hover:border-slate-400 transition-all">02. VTOL</button>
+              <button onclick="jumpToFleet(2)" id="fpill2" class="py-2 rounded bg-surfaceMuted border border-surfaceBorder text-slate-600 hover:border-slate-400 transition-all">03. FIN R&amp;D</button>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 h-full w-full relative rounded-xl overflow-hidden border border-surfaceBorder bg-slate-100 shadow-md">
+            <img id="fBg0" src="./images/photo5.jpg" alt="Micro Class Aeromodel" class="scrolly-img absolute inset-0 w-full h-full object-cover opacity-100">
+            <img id="fBg1" src="./images/photo6.jpg" alt="Autonomous Quadplane" class="scrolly-img absolute inset-0 w-full h-full object-cover opacity-0">
+            <img id="fBg2" src="./images/photo7.jpg" alt="Deployable Fin Testbed" class="scrolly-img absolute inset-0 w-full h-full object-cover opacity-0">
+            <div class="absolute bottom-3 right-4 px-3 py-1 rounded bg-slate-900/80 backdrop-blur-sm text-xs font-mono text-white border border-slate-700">
+              <span id="fleetCaption">High-Lift Micro Class Platform</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Advanced R&D Initiatives -->
+    <div class="max-w-7xl mx-auto px-6 py-10">
+      <div class="bg-white rounded-lg border border-surfaceBorder p-6 shadow-2xs reveal-card">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-4 font-mono">
+          Research &amp; Development Initiatives (Click to Review Technical Abstract)
+        </h4>
+        <div class="space-y-3 text-sm">
+          <div class="border border-surfaceBorder rounded p-4 cursor-pointer hover:border-blue-400 transition-colors" onclick="toggleAccordion('acc1')">
+            <div class="flex justify-between items-center font-bold text-slate-900 text-xs">
+              <span>01. Indigenous Flight Controller &amp; ESC Firmware</span>
+              <span id="acc1-icon" class="text-blue-700 font-mono font-bold">+</span>
+            </div>
+            <p id="acc1" class="hidden mt-3 text-slate-600 text-xs leading-relaxed font-sans">
+              Custom in-house STM32-based autopilot hardware and motor electronic speed controller (ESC) firmware with active braking and real-time current logging, reducing dependency on proprietary foreign flight stacks.
+            </p>
+          </div>
+
+          <div class="border border-surfaceBorder rounded p-4 cursor-pointer hover:border-blue-400 transition-colors" onclick="toggleAccordion('acc2')">
+            <div class="flex justify-between items-center font-bold text-slate-900 text-xs">
+              <span>02. Collaborative Defense Drone Project (DRDO Track)</span>
+              <span id="acc2-icon" class="text-orange-600 font-mono font-bold">+</span>
+            </div>
+            <p id="acc2" class="hidden mt-3 text-slate-600 text-xs leading-relaxed font-sans">
+              Classified unmanned aerial platform developed in technical consultation with DRDO researchers. Focuses on low radar-cross-section composites, redundant power rails, and long-endurance loiter aerodynamics.
+            </p>
+          </div>
+
+          <div class="border border-surfaceBorder rounded p-4 cursor-pointer hover:border-blue-400 transition-colors" onclick="toggleAccordion('acc3')">
+            <div class="flex justify-between items-center font-bold text-slate-900 text-xs">
+              <span>03. GPS-Denied Navigation &amp; Optical Waypoint Guidance</span>
+              <span id="acc3-icon" class="text-blue-700 font-mono font-bold">+</span>
+            </div>
+            <p id="acc3" class="hidden mt-3 text-slate-600 text-xs leading-relaxed font-sans">
+              Stereo vision, optical flow, and inertial sensor fusion allowing micro-UAVs to maintain steady localization and obstacle avoidance in indoor or electronically contested environments.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Our Achievements -->
+  <section id="achievements" class="py-20 border-b border-surfaceBorder bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-2xl mb-10 reveal-card">
+        <span class="text-xs font-bold uppercase tracking-widest text-blue-700 mb-2 block">Track Record</span>
+        <h2 class="text-3xl font-extrabold text-slate-900">Our Achievements</h2>
+        <p class="text-slate-600 mt-1 text-sm leading-relaxed">
+          National and international competition podium finishes representing B.M.S. College of Engineering.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+        <div onclick="openModal('texas')" class="p-6 rounded-lg border border-surfaceBorder bg-surfaceMuted hover:border-blue-700 cursor-pointer transition-all shadow-2xs reveal-card">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-3">
+            <span class="font-semibold text-blue-800 bg-blue-100 px-2.5 py-0.5 rounded">INTERNATIONAL</span>
+            <span>FORT WORTH, TEXAS, USA</span>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">SAE Aero Design West</h3>
+          <p class="text-orange-600 font-semibold text-sm mb-3">
+            2nd Place Globally: MATLAB Simulation Award &bull; #16 Worldwide
+          </p>
+          <p class="text-slate-600 text-xs leading-relaxed mb-4">
+            Ranked #16 globally in the Micro Class Category against premier international engineering institutes. Awarded 2nd worldwide for computational simulation precision and aeroelastic modeling.
+          </p>
+          <span class="text-blue-700 text-xs font-semibold hover:underline">View Mission Debrief &rarr;</span>
+        </div>
+
+        <div onclick="openModal('aerothon')" class="p-6 rounded-lg border border-surfaceBorder bg-surfaceMuted hover:border-blue-700 cursor-pointer transition-all shadow-2xs reveal-card">
+          <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-3">
+            <span class="font-semibold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded">NATIONAL</span>
+            <span>AEROSPACE DESIGN CHALLENGE</span>
+          </div>
+          <h3 class="text-xl font-bold text-slate-900 mb-2">SAE Aerothon &amp; ADDC</h3>
+          <p class="text-blue-700 font-semibold text-sm mb-3">
+            1st Place: Unique Technology Development
+          </p>
+          <p class="text-slate-600 text-xs leading-relaxed mb-4">
+            Captured 1st Place nationally for deployable directional micro-fin stabilization mechanisms and high-efficiency cargo airframe geometry evaluated by AeSI officials.
+          </p>
+          <span class="text-blue-700 text-xs font-semibold hover:underline">View Mission Debrief &rarr;</span>
+        </div>
+      </div>
+
+      <div class="rounded-lg border border-surfaceBorder overflow-hidden shadow-2xs reveal-card">
+        <img src="./images/photo8.jpg" alt="AeroBMSCE Team at Aero Design Competition" class="w-full h-80 object-cover">
+        <div class="p-4 bg-slate-900 text-white flex justify-between items-center text-xs">
+          <span class="font-semibold">TEAM YAKSHA &bull; SAE AERO DESIGN MICRO CLASS FLIGHTLINE STAGING</span>
+          <button onclick="openModal('texas')" class="px-3 py-1 bg-white text-slate-900 font-bold rounded text-xs hover:bg-slate-100">
+            Read Full Debrief
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Partner With Us -->
+  <section id="partners" class="py-20 border-b border-surfaceBorder bg-surfaceMuted">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-2xl mx-auto text-center mb-10 reveal-card">
+        <span class="text-xs font-bold uppercase tracking-widest text-blue-700 mb-2 block">Industry Collaboration</span>
+        <h2 class="text-3xl font-extrabold text-slate-900">Partner With AeroBMSCE</h2>
+        <p class="text-slate-600 mt-1 text-sm leading-relaxed">
+          Sponsorship funds precision avionics, carbon composites, and international competition travel. Select a tier below to request partnership details.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12 reveal-card">
+        <div onclick="selectTier('Platinum Wing Tier')" class="p-6 rounded-lg bg-white border border-surfaceBorder hover:border-blue-700 cursor-pointer transition-all text-center shadow-xs">
+          <img src="./images/icon-platinum.png" alt="Platinum Tier" class="h-10 w-10 mx-auto mb-3 object-contain">
+          <h4 class="font-bold text-slate-900 text-sm mb-1">Platinum Wing</h4>
+          <p class="text-xs text-slate-500 mb-3">Prime aircraft fuselage branding, team apparel logo, and campus placement recruiting access.</p>
+          <span class="text-xs font-semibold text-blue-700 hover:underline">Select Tier</span>
+        </div>
+        <div onclick="selectTier('Gold Wing Tier')" class="p-6 rounded-lg bg-white border border-surfaceBorder hover:border-blue-700 cursor-pointer transition-all text-center shadow-xs">
+          <img src="./images/icon-gold.png" alt="Gold Tier" class="h-10 w-10 mx-auto mb-3 object-contain">
+          <h4 class="font-bold text-slate-900 text-sm mb-1">Gold Wing</h4>
+          <p class="text-xs text-slate-500 mb-3">Leading edge wing branding, campus symposium demonstrations, and technical report features.</p>
+          <span class="text-xs font-semibold text-blue-700 hover:underline">Select Tier</span>
+        </div>
+        <div onclick="selectTier('Silver Wing Tier')" class="p-6 rounded-lg bg-white border border-surfaceBorder hover:border-blue-700 cursor-pointer transition-all text-center shadow-xs">
+          <img src="./images/icon-silver.png" alt="Silver Tier" class="h-10 w-10 mx-auto mb-3 object-contain">
+          <h4 class="font-bold text-slate-900 text-sm mb-1">Silver Wing</h4>
+          <p class="text-xs text-slate-500 mb-3">Digital presentation recognition, campus banner placement, and social media coverage.</p>
+          <span class="text-xs font-semibold text-blue-700 hover:underline">Select Tier</span>
+        </div>
+        <div onclick="selectTier('Technical Partner Tier')" class="p-6 rounded-lg bg-white border border-surfaceBorder hover:border-blue-700 cursor-pointer transition-all text-center shadow-xs">
+          <img src="./images/icon-technical.png" alt="Technical Tier" class="h-10 w-10 mx-auto mb-3 object-contain">
+          <h4 class="font-bold text-slate-900 text-sm mb-1">Technical Partner</h4>
+          <p class="text-xs text-slate-500 mb-3">Software licenses (CAD/CFD), high-discharge batteries, composite fabrics, or avionics hardware.</p>
+          <span class="text-xs font-semibold text-blue-700 hover:underline">Select Tier</span>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-lg border border-surfaceBorder p-6 mb-10 shadow-2xs reveal-card">
+        <p class="text-center text-xs font-bold text-slate-500 uppercase tracking-wider mb-5 font-mono">
+          Research, Industrial &amp; Software Partners
+        </p>
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 items-center justify-items-center opacity-75">
+          <img src="./images/drdo.png" alt="DRDO" class="h-9 object-contain">
+          <img src="./images/csir-nal.png" alt="CSIR NAL" class="h-9 object-contain">
+          <img src="./images/ansys.png" alt="ANSYS" class="h-6 object-contain">
+          <img src="./images/altair.png" alt="Altair" class="h-6 object-contain">
+          <img src="./images/siemens.png" alt="Siemens" class="h-6 object-contain">
+          <img src="./images/solidworks.png" alt="SolidWorks" class="h-6 object-contain">
+          <img src="./images/flow5.png" alt="Flow5" class="h-6 object-contain">
+        </div>
+      </div>
+
+      <div class="max-w-xl mx-auto bg-white rounded-lg border border-surfaceBorder p-8 shadow-xs reveal-card">
+        <h3 class="text-lg font-bold text-slate-900 mb-1 text-center">Partnership Inquiry</h3>
+        <p class="text-xs text-slate-500 text-center mb-6">Submit sponsorship inquiries or research collaboration proposals.</p>
+        <form onsubmit="handleForm(event)" class="space-y-4 text-xs font-medium">
+          <div>
+            <label class="block text-slate-700 mb-1">Organization / Sponsor Name</label>
+            <input type="text" id="partnerOrg" required class="w-full px-4 py-2.5 rounded border border-surfaceBorder text-slate-800 focus:outline-none focus:border-blue-700" placeholder="e.g. Aerospace Technologies Corp">
+          </div>
+          <div>
+            <label class="block text-slate-700 mb-1">Corporate Email Address</label>
+            <input type="email" id="partnerEmail" required class="w-full px-4 py-2.5 rounded border border-surfaceBorder text-slate-800 focus:outline-none focus:border-blue-700" placeholder="inquiries@aerocorp.com">
+          </div>
+          <div>
+            <label class="block text-slate-700 mb-1">Proposed Collaboration Scope / Tier</label>
+            <input type="text" id="partnerScope" required class="w-full px-4 py-2.5 rounded border border-surfaceBorder text-blue-700 font-semibold focus:outline-none focus:border-blue-700" placeholder="Select a tier above or write custom details...">
+          </div>
+          <button type="submit" class="w-full py-3 rounded bg-blue-700 text-white font-bold text-xs hover:bg-blue-800 transition-colors shadow-xs">
+            Submit Partnership Request
+          </button>
+          <div id="formFeedback" class="hidden p-3 rounded bg-emerald-50 border border-emerald-300 text-emerald-800 text-center text-xs"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Institutional Footer -->
+  <footer class="py-8 bg-slate-900 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div>
+        <p class="text-white font-semibold">AeroBMSCE &bull; Aeromodelling &amp; UAV Design Club</p>
+        <p class="text-slate-400 text-[11px] mt-0.5">B.M.S. College of Engineering, Bull Temple Road, Bengaluru &bull; 12.9416&deg; N, 77.5658&deg; E</p>
+      </div>
+      <div class="text-slate-400 text-[11px] font-mono">
+        &copy; 2026 AeroBMSCE. All technical designs and flight data documented.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Universal Modal Dialog -->
+  <div id="infoModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs hidden flex items-center justify-center p-4">
+    <div class="bg-white border border-surfaceBorder rounded-lg max-w-2xl w-full p-8 relative shadow-xl text-xs">
+      <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-800 text-xl font-bold">&times;</button>
+      <div id="modalContent"></div>
+      <div class="mt-6 pt-4 border-t border-surfaceBorder flex justify-end">
+        <button onclick="closeModal()" class="px-4 py-2 bg-slate-100 text-slate-700 font-semibold rounded hover:bg-slate-200">Close Log</button>
+      </div>
+    </div>
   </div>
-</div>
 
-<img class="banner" src="images/photo8.jpg">
+  <!-- Client-Side JavaScript -->
+  <script>
+    // 1. Wings Data
+    const wingsData = [
+      {
+        progress: 'DIVISION 01 / 04',
+        badge: 'INTERNATIONAL FLIGHTLINE',
+        title: 'Team Yaksha',
+        desc: 'Team Yaksha represents BMSCE internationally at the prestigious SAE Aero Design Series in North America, designing high-performance airframes optimized for maximum takeoff weight within strict size-box constraints.',
+        arena: 'Texas, USA (SAE West)',
+        skills: 'MATLAB Aeroelasticity & CFD',
+        rank: '2nd Globally (MATLAB Award)',
+        caption: 'Team Yaksha Build Session'
+      },
+      {
+        progress: 'DIVISION 02 / 04',
+        badge: 'HEAVY CARGO AEROMODELLING',
+        title: 'Team Blue Impulse',
+        desc: 'Team Blue Impulse spearheads classical aeromodelling, designing high-wing and low-wing fixed-wing aircraft. They specialize in optimizing airfoil lift-to-drag ratios for heavy cargo delivery and short takeoff and landing (STOL) operations.',
+        arena: 'State & National Aerothons',
+        skills: 'Airfoil Profiling & Balsa',
+        rank: 'Multi-Podium Records',
+        caption: 'Team Blue Impulse Flight Preparation'
+      },
+      {
+        progress: 'DIVISION 03 / 04',
+        badge: 'AUTONOMOUS UAV & VTOL',
+        title: 'Team Flying Phantoms',
+        desc: 'Team Flying Phantoms develops autonomous multi-rotors and hybrid quadplanes. Their aircraft incorporate companion computers running ROS and OpenCV for real-time target recognition, precision payload drop, and GPS-denied navigation.',
+        arena: 'ISRO IROC & Drone Fests',
+        skills: 'Optical Flow & Pixhawk',
+        rank: 'Top 3 National Rankings',
+        caption: 'Flying Phantoms Autonomous Rig'
+      },
+      {
+        progress: 'DIVISION 04 / 04',
+        badge: 'FPV SPEED & AGILITY',
+        title: 'Team Vectors',
+        desc: 'Team Vectors represents the extreme speed and agility arm of AeroBMSCE. They build sub-250g and 5-inch carbon fiber racing quads capable of reaching speeds over 140 km/h for competitive collegiate drone racing leagues.',
+        arena: 'NITK & National Sprints',
+        skills: 'Betaflight & High-C LiPo',
+        rank: 'Podium Sprint Record',
+        caption: 'Team Vectors Field Flight Testing'
+      }
+    ];
 
-<div class="wrap">
+    let curWingIdx = -1;
 
-  <a name="who"></a>
-  <h4 class="sec">WHO WE ARE</h4>
-  <p>AeroBMSCE is the official aerospace, aeromodelling, and unmanned systems innovation club of BMS College of Engineering, operating from Propel Lab–3. Established in 2012, the club brings together engineers from 10+ departments to design, build, and test advanced aircraft, drones, and autonomous systems.</p>
+    function applyWing(index) {
+      if (index === curWingIdx || index < 0 || index > 3) return;
+      curWingIdx = index;
+      const d = wingsData[index];
 
-  <h4 class="sec">WHAT WE DO</h4>
-  <ul>
-    <li>Competitive aircraft &amp; UAV design</li>
-    <li>Drone racing &amp; autonomy</li>
-    <li>Industry-grade fabrication &amp; testing</li>
-    <li>Talent development through real-world engineering</li>
-  </ul>
+      [0, 1, 2, 3].forEach(i => {
+        const bg = document.getElementById('wBg' + i);
+        const pill = document.getElementById('wpill' + i);
+        if (i === index) {
+          bg.style.opacity = '1';
+          if (pill) {
+            pill.className = 'py-2 rounded bg-blue-700 text-white font-bold transition-all';
+          }
+        } else {
+          bg.style.opacity = '0';
+          if (pill) {
+            pill.className = 'py-2 rounded bg-surfaceMuted border border-surfaceBorder text-slate-600 hover:border-slate-400 transition-all';
+          }
+        }
+      });
 
-  <h4 class="sec">WHY IT MATTERS</h4>
-  <ul>
-    <li>Engineers trained on real constraints</li>
-    <li>Talent exposure before graduation</li>
-    <li>Brand visibility in elite technical ecosystems</li>
-  </ul>
+      document.getElementById('wingProgress').textContent = d.progress;
+      document.getElementById('wingBadge').textContent = d.badge;
+      document.getElementById('wingTitle').textContent = d.title;
+      document.getElementById('wingDesc').textContent = d.desc;
+      document.getElementById('wingArena').textContent = d.arena;
+      document.getElementById('wingSkills').textContent = d.skills;
+      document.getElementById('wingRank').textContent = d.rank;
+      document.getElementById('wingCaption').textContent = d.caption;
+    }
 
-  <h4 class="sec">OUR VISION</h4>
-  <p>We envision AeroBMSCE as a leading aerospace and unmanned systems research group, renowned for design excellence, innovation, and competitive success. We aim to cultivate future leaders in the aerospace and drone industry, establishing a legacy of engineering excellence that inspires students worldwide.</p>
+    function jumpToWing(idx) {
+      applyWing(idx);
+    }
 
-  <p style="margin-top:30px">Want to know more about what we have achieved? <a href="journey.html">Click here</a>. Interested in working with us? <a href="partners.html">Click here</a>.</p>
+    // 2. Fleet Data
+    const fleetData = [
+      {
+        progress: 'AIRFRAME 01 / 03',
+        category: 'SAE INTERNATIONAL CLASS',
+        name: 'Micro Class Aeromodel',
+        desc: 'Engineered strictly within modular transport envelope constraints. Focuses on minimal empty weight, high structural rigidity using carbon fiber pultruded rods, and sub-2-minute rapid pit assembly.',
+        motor: 'T-Motor Brushless + APC Prop',
+        payload: '~1.8x Empty Weight Fraction',
+        material: 'Hand-Selected Balsa & 3K Carbon',
+        assembly: '< 120s Rapid Assembly',
+        caption: 'High-Lift Micro Class Platform'
+      },
+      {
+        progress: 'AIRFRAME 02 / 03',
+        category: 'AUTONOMOUS RECON FLEET',
+        name: 'Multi-Mission Hybrid VTOL',
+        desc: 'Fixed-wing platform equipped with 4 vertical lift motors and 1 forward pusher motor. Bridges the gap between hover agility and long-endurance horizontal transit for autonomous surveillance.',
+        motor: '4x Lift Motors + 1x Pusher',
+        payload: '3-Axis Gimbal Thermal Camera',
+        material: 'Carbon-Glass Composite Sandwich',
+        assembly: 'Quick-Disconnect Wing Mounts',
+        caption: 'Hybrid Quadplane in Flight'
+      },
+      {
+        progress: 'AIRFRAME 03 / 03',
+        category: 'EXPERIMENTAL AERODYNAMICS',
+        name: 'Deployable Fin Testbed',
+        desc: 'Experimental high-agility glider platform testing active flutter suppression and directional yaw correction using micro-fins actuated via sub-millisecond digital micro-servos.',
+        motor: 'High-Torque Aerobatic Brushless',
+        payload: 'Multi-Channel IMU & Strain Gauges',
+        material: 'Balsa Ribs + Carbon Backbone',
+        assembly: '3D-Sintered Fin Mechanisms',
+        caption: 'Dynamic Fin Airframe Validation'
+      }
+    ];
 
-</div>
+    let curFleetIdx = -1;
 
+    function applyFleet(index) {
+      if (index === curFleetIdx || index < 0 || index > 2) return;
+      curFleetIdx = index;
+      const d = fleetData[index];
+
+      [0, 1, 2].forEach(i => {
+        const bg = document.getElementById('fBg' + i);
+        const pill = document.getElementById('fpill' + i);
+        if (i === index) {
+          bg.style.opacity = '1';
+          if (pill) {
+            pill.className = 'py-2 rounded bg-blue-700 text-white font-bold transition-all';
+          }
+        } else {
+          bg.style.opacity = '0';
+          if (pill) {
+            pill.className = 'py-2 rounded bg-surfaceMuted border border-surfaceBorder text-slate-600 hover:border-slate-400 transition-all';
+          }
+        }
+      });
+
+      document.getElementById('fleetProgress').textContent = d.progress;
+      document.getElementById('fleetCategory').textContent = d.category;
+      document.getElementById('fleetName').textContent = d.name;
+      document.getElementById('fleetDesc').textContent = d.desc;
+      document.getElementById('specMotor').textContent = d.motor;
+      document.getElementById('specPayload').textContent = d.payload;
+      document.getElementById('specMaterial').textContent = d.material;
+      document.getElementById('specAssembly').textContent = d.assembly;
+      document.getElementById('fleetCaption').textContent = d.caption;
+    }
+
+    function jumpToFleet(idx) {
+      applyFleet(idx);
+    }
+
+    // BALANCED SCROLL DISPATCHER
+    function handleScrollTracks() {
+      // Wings Track (4 items)
+      const wCont = document.getElementById('wingsScrollContainer');
+      if (wCont) {
+        const rect = wCont.getBoundingClientRect();
+        const maxScroll = wCont.offsetHeight - window.innerHeight;
+        const scrolled = -rect.top;
+        if (scrolled >= 0 && maxScroll > 0) {
+          const prog = Math.max(0, Math.min(0.999, scrolled / maxScroll));
+          let idx = Math.min(3, Math.floor(prog * 4));
+          applyWing(idx);
+        }
+      }
+
+      // Fleet Track (3 items)
+      const fCont = document.getElementById('fleetScrollContainer');
+      if (fCont) {
+        const rect = fCont.getBoundingClientRect();
+        const maxScroll = fCont.offsetHeight - window.innerHeight;
+        const scrolled = -rect.top;
+        if (scrolled >= 0 && maxScroll > 0) {
+          const prog = Math.max(0, Math.min(0.999, scrolled / maxScroll));
+          let idx = Math.min(2, Math.floor(prog * 3));
+          applyFleet(idx);
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScrollTracks, { passive: true });
+
+    // Reveal Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal-card').forEach(el => observer.observe(el));
+
+    // CAD Toggle
+    let heroView = false;
+    function toggleHeroView() {
+      heroView = !heroView;
+      document.getElementById('heroPlaneImg').src = heroView ? './images/photo7.jpg' : './images/cad-plane.png';
+    }
+
+    // Accordion Toggle
+    function toggleAccordion(id) {
+      const el = document.getElementById(id);
+      const icon = document.getElementById(id + '-icon');
+      if (el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+        icon.textContent = '−';
+      } else {
+        el.classList.add('hidden');
+        icon.textContent = '+';
+      }
+    }
+
+    // Tier Autofill
+    function selectTier(tierName) {
+      const input = document.getElementById('partnerScope');
+      input.value = tierName;
+      input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      input.focus();
+    }
+
+    // Modals
+    const modalData = {
+      texas: `
+        <span class="text-xs font-mono font-bold text-blue-700 block mb-2">[DEBRIEF // SAE AERO DESIGN WEST]</span>
+        <h3 class="text-lg font-bold text-slate-900 mb-1">SAE Aero Design West — Fort Worth, Texas, USA</h3>
+        <p class="text-orange-600 font-semibold text-xs mb-3">2nd Place Globally: MATLAB Simulation Award &bull; #16 Overall Worldwide (Micro Class)</p>
+        <p class="text-slate-600 text-xs leading-relaxed mb-3">
+          Team Yaksha traveled to Fort Worth, Texas, representing BMSCE against 75+ global engineering colleges. The team validated its carbon-balsa micro aircraft using computational numerical simulation in MATLAB, achieving predicted payload lift within 3% tolerance of field testing.
+        </p>
+        <div class="bg-surfaceMuted p-3 rounded border border-surfaceBorder text-slate-700 space-y-1 font-mono text-[11px]">
+          <p>&bull; Venue: Fort Worth, Texas, United States</p>
+          <p>&bull; Division: Micro Class Category</p>
+          <p>&bull; Recognition: Global MATLAB Simulation Excellence Trophy</p>
+        </div>
+      `,
+      aerothon: `
+        <span class="text-xs font-mono font-bold text-emerald-700 block mb-2">[DEBRIEF // SAE AEROTHON &amp; ADDC]</span>
+        <h3 class="text-lg font-bold text-slate-900 mb-1">SAE Aerothon &amp; ADDC — National Championship</h3>
+        <p class="text-blue-700 font-semibold text-xs mb-3">1st Place: Unique Technology Development</p>
+        <p class="text-slate-600 text-xs leading-relaxed mb-4">
+          Captured 1st Place nationally for deployable directional micro-fin stabilization mechanisms and high-efficiency cargo airframe geometry evaluated by AeSI officials.
+        </p>
+        <div class="bg-surfaceMuted p-3 rounded border border-surfaceBorder text-slate-700 space-y-1 font-mono text-[11px]">
+          <p>&bull; Category: Unique Aerodynamic Technology Innovation</p>
+          <p>&bull; Highlights: Real-time telemetry, active yaw correction, and flight reliability</p>
+        </div>
+      `
+    };
+
+    function openModal(key) {
+      const modal = document.getElementById('infoModal');
+      const content = document.getElementById('modalContent');
+      if (modalData[key]) {
+        content.innerHTML = modalData[key];
+        modal.classList.remove('hidden');
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('infoModal').classList.add('hidden');
+    }
+
+    // Form
+    function handleForm(e) {
+      e.preventDefault();
+      const org = document.getElementById('partnerOrg').value;
+      const fb = document.getElementById('formFeedback');
+      fb.textContent = `Thank you! Partnership inquiry for ${org} has been submitted to the AeroBMSCE team.`;
+      fb.classList.remove('hidden');
+      setTimeout(() => {
+        fb.classList.add('hidden');
+        e.target.reset();
+      }, 5000);
+    }
+  </script>
 </body>
 </html>
