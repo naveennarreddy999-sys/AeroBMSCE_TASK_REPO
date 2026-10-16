@@ -1,15 +1,9 @@
 ﻿# AeroBMSCE Website Revamp — Technical Recruitment Task
-
-Production-grade, desktop-optimized web application engineered for **AeroBMSCE** (the collegiate aeromodelling and autonomous UAV laboratory of B.M.S. College of Engineering).
-
-Live Website: https://<your-username>.github.io/AeroBMSCE_TASK_REPO/
-Repository: https://github.com/<your-username>/AeroBMSCE_TASK_REPO
-
 ---
 
 ## 1. Flaws of the Original Website
 * **Broken Navigation & Dead End Links:** The original top navigation contained non-functional hyperlinks (`href="#"`), mispointed anchor targets, and stray layout elements that prevented smooth user discovery across pages.
-* **Dislocated Information Architecture:** Club achievements, subteams, and ongoing technical fleet research were fragmented across detached legacy files (`index.html`, `journey.html`, `partners.html`)[cite: 1].
+* **Dislocated Information Architecture:** Club achievements, subteams, and ongoing technical fleet research were fragmented across detached legacy files (`index.html`, `journey.html`, `partners.html`).
 * **Severe Asset Scaling & Distortion:** The original markup lacked modern responsive wrappers and aspect-ratio constraints, resulting in aircraft and team photos from the `images/` directory being stretched, pixelated, or misaligned across desktop viewports.
 * **Visual Incoherence & Contrast Failures:** Lacked a unified design system; arbitrary fonts, unconstrained container margins, and unstyled form fields degraded the institutional credibility of an internationally competitive aerospace club.
 
