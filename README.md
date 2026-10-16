@@ -1,32 +1,34 @@
 ﻿# AeroBMSCE Website Revamp — Technical Recruitment Task
 
-Revamped, institutional, desktop-optimized web application for **AeroBMSCE** (the collegiate aeromodelling and unmanned aerial vehicle lab of B.M.S. College of Engineering).
+Production-grade, desktop-optimized web application engineered for **AeroBMSCE** (the collegiate aeromodelling and autonomous UAV laboratory of B.M.S. College of Engineering).
+
+Live Website: https://<your-username>.github.io/AeroBMSCE_TASK_REPO/
+Repository: https://github.com/<your-username>/AeroBMSCE_TASK_REPO
 
 ---
 
 ## 1. Flaws of the Original Website
-* **Fragmented Information Architecture:** Critical club details, achievements, and technical fleet data were scattered across disparate legacy files (`index.html`, `journey.html`, `partners.html`) with no unified narrative flow or structured navigation.
-* **Broken Navigation & Non-functional Anchors:** Internal hyperlinks across the top bar were either dead (`href="#"`), misdirected, or pointed to nonexistent anchors, preventing visitors from discovering club information.
+* **Broken Navigation & Dead End Links:** The original top navigation contained non-functional hyperlinks (`href="#"`), mispointed anchor targets, and stray layout elements that prevented smooth user discovery across pages[cite: 1].
+* **Dislocated Information Architecture:** Club achievements, subteams, and ongoing technical fleet research were fragmented across detached legacy files (`index.html`, `journey.html`, `partners.html`)[cite: 1].
 * **Severe Asset Scaling & Distortion:** The original markup lacked modern responsive wrappers and aspect-ratio constraints, resulting in aircraft and team photos from the `images/` directory being stretched, pixelated, or misaligned across desktop viewports.
-* **Inconsistent Visual Hierarchy & Design Language:** The original styling lacked a unified design system; typography, buttons, margin spacing, and contrast ratios varied across pages without visual cohesion.
+* **Visual Incoherence & Contrast Failures:** Lacked a unified design system; arbitrary fonts, unconstrained container margins, and unstyled form fields degraded the institutional credibility of an internationally competitive aerospace club[cite: 2].
 
 ---
 
 ## 2. Design Route & UI/UX Decisions
-* **Institutional Aerospace Aesthetic:** Replaced generic AI template dark grids with an authentic collegiate engineering identity: clean architectural slate (`#f8fafc`), deep aerospace navy (`#0f172a`), royal blue accents (`#1d4ed8`), and crisp white telemetry cards.
-* **Dual-Module Scrollytelling Architecture:** 
-  * **"Who We Are":** Implemented a pinned scroll-storytelling track cycling through all four engineering wings (Team Yaksha, Team Blue Impulse, Team Flying Phantoms, Team Vectors). The data card remains pinned on the left while full, unobstructed workshop and flight-line photos cross-fade on the right.
-  * **"What We Build":** Applied the same pinned scrollytelling mechanism to showcase the aircraft fleet (SAE Micro-Class, Multi-Mission VTOL, Fin Testbed) alongside structural dimensions, propulsion specs, and payload ratios.
-* **Balanced Wheel Transition Math:** Engineered proportional scroll thresholds using normalized progress ratios (`Math.min(maxIdx, Math.floor(prog * count))`) so every slide triggers on an identical, snappy 1–2 wheel clicks without lag or hanging on the initial slide.
-* **Interactive Mission Debrief Modals:** Built client-side modal windows for major milestones—including the SAE Aero Design West (Fort Worth, Texas) 2nd Place MATLAB Simulation Award and the SAE Aerothon 1st Place Unique Technology Award—allowing reviewers to inspect deep technical logs without cluttering the main layout.
-* **Dynamic Partnership Autofill:** Linked the sponsorship tiers (Platinum, Gold, Silver, Technical) directly to the partnership transmission form, auto-populating tier details on click for seamless UX.
+* **Institutional Aerospace Identity:** Implemented an official collegiate engineering design system: clean architectural slate (`#f8fafc`), deep aerospace navy (`#0f172a`), royal blue accents (`#1d4ed8`), and clean monospaced telemetry data tables[cite: 2].
+* **Interactive Wipe Slider (Airframe Inspector):** Engineered an interactive horizontal wipe slider allowing evaluators to compare the CAD structural topology with the real manufactured balsa-carbon airframe in real-time[cite: 2].
+* **Scroll-Linked Avionics HUD:** Built a fixed telemetry widget that maps page scroll progress directly to an **Altitude Gauge** (`0 FT` to `10,000 FT`) and **Airspeed Indicator**, giving evaluators a responsive flight simulation experience.
+* **Live Mission Horizon Countdown:** Incorporated a real-time countdown calculating days, hours, and minutes remaining until the upcoming NACDEC 2026 / NITK Drone Racing campaigns[cite: 1].
+* **Fullscreen Hangar Lightbox Modal:** Built an interactive gallery lightbox supporting keyboard arrow navigation (`←`, `→`, and `Esc` to close) for high-resolution inspection of workshop photos.
+* **Desktop 3D Tilt Physics:** Applied dynamic mouse-tracking tilt physics across fleet and sponsorship cards for enhanced depth without degrading browser performance.
 
 ---
 
 ## 3. Problem / Edge Case Faced & Resolution
-* **Problem:** Uneven scroll dwell time and image obstruction in the initial scrollytelling layout.
-* **How it occurred:** The first slide in the pinned container was capturing both the entry scroll offset and its proportional segment, causing slide 1 to require almost double the scroll effort of subsequent slides. Furthermore, standard text overlays were overlapping the center of team photographs, obscuring member faces and aircraft details.
+* **Problem:** Ensuring complex interactive avionics widgets (scroll-linked altitude meter, progress bar, parallax background, and 3D tilt calculations) run smoothly at 60 FPS without layout thrashing or interfering with keyboard navigation.
+* **How it occurred:** Running unthrottled JavaScript listeners on `window.onscroll` and `window.onmousemove` can trigger heavy DOM recalculations and frame drops on budget laptops or trackpads.
 * **Resolution:** 
-  1. Restructured the layout into an asymmetric 5:7 split grid where all textual telemetry is self-contained in a structured card on the left, leaving the right 60% entirely clear for unobstructed, high-resolution imagery.
-  2. Shortened the scroll track container heights from `400vh` to a lightweight `140vh`/`120vh` and rewrote the progress calculation to sample active windows evenly, ensuring uniform and responsive transition timing across all subteams and aircraft.
-  3. Enforced explicit relative asset paths (`./images/filename.jpg`) across all image sources to prevent 404 path resolution failures when deployed to GitHub Pages repository subpaths
+  1. Configured all scroll listeners with `{ passive: true }` to separate scroll execution from main-thread rendering.
+  2. Isolated animated properties to GPU-accelerated transforms (`transform`, `opacity`, and `width`) and added `@media (prefers-reduced-motion: reduce)` rules to ensure full accessibility compliance.
+  3. Enforced explicit relative paths (`./images/filename.jpg`) across all image sources to prevent 404 path resolution failures when deployed to GitHub Pages repository subpaths[cite: 1, 2].
